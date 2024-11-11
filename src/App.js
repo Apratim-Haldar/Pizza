@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import LoginPage from "./pages/Login";
+import ProfilePage from "./pages/Profile";
+import PizzaForm from "./pages/AddPizza";
+import Shop from "./pages/Shop/Shop";
+import { UserDetailsProvider } from "./contexts/UserDetailsContext"; // Import the UserDetailsProvider
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserDetailsProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/addPizza" element={<PizzaForm />} />
+          <Route path="/shop" element={<Shop />} />
+        </Routes>
+      </Router>
+    </UserDetailsProvider>
   );
 }
 
